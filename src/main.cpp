@@ -40,7 +40,7 @@ AS5600 encoder;
 const char *defaultSSID = "DefaultSSID";
 const char *defaultPSK = "DefaultPassword";
 const char *logging_file = "/temp.csv";
-const char *mqtt_server = "control.local";
+const char *mqtt_server = "hub.local";
 const char *topic_set = "esp8266/blinds/set";
 const char *topic_position = "esp8266/blinds/position";
 const char *topic_feedback = "esp8266/blinds/feedback";
@@ -193,7 +193,7 @@ void stepperLoop()
 		}
 		else if (position > max_power && target > max_power)
 		{
-			power = 1200;
+			power = 1250;
 			speed = 30;
 		}
 		else
