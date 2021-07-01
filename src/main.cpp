@@ -13,7 +13,7 @@
 #define MICROSTEPS 128
 #define MAX_DELTA MICROSTEPS / 4
 #define MIN_DELTA -MICROSTEPS / 4
-#define DEADZONE 600
+#define DEADZONE 800
 #define ESP_LED 2
 
 #include "BasicStepperDriver.h"
@@ -112,7 +112,7 @@ void ledOn()
 void mqtt_callback(char *topic, byte *payload, unsigned int length)
 {
 	String response = "";
-	for (int i = 0; i < length; i++)
+	for (unsigned int i = 0; i < length; i++)
 	{
 		response += (char)payload[i];
 	}
@@ -158,7 +158,7 @@ void mqtt_callback(char *topic, byte *payload, unsigned int length)
 
 void stepperLoop()
 {
-	int delta = target - position;
+	int delta = -(target - position);
 	if (delta < DEADZONE && delta > -DEADZONE)
 	{
 		stepper.stop();
